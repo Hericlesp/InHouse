@@ -10,7 +10,7 @@ def main(page: ft.Page):
 
     login = ft.Column([ # aplica configuração a pagina peicipal roxa
         ft.Container(
-            bgcolor=ft.colors.PURPLE_400,
+            bgcolor=ft.colors.PURPLE_200,
             width=page.window_width - 10,
             height= page.window.height - 60,
             border_radius=10,
@@ -38,6 +38,8 @@ def main(page: ft.Page):
                                 )
                             ])
                         ),
+
+                    
                         ft.Column([
                             ft.TextField(
                                 hint_text='DIGITE SEU EMAIL',
@@ -45,10 +47,23 @@ def main(page: ft.Page):
                                 height=40,
                                 border_radius=40,
                                 prefix_icon=ft.icons.PERSON,
-                                keyboard_type=ft.KeyboardType.EMAIL
-                            
-                            )
-                        ])
+                                text_vertical_align=1,
+                                keyboard_type=ft.KeyboardType.EMAIL                          
+                            ),
+
+                            ft.TextField(
+                                hint_text='DIGITE SUA SENHA',
+                                width=300, # LARGURA
+                                height=40, # altura
+                                border_radius=40,
+                                prefix_icon=ft.icons.LOCK,
+                                text_vertical_align=1,
+                                password= True,
+                                can_reveal_password=True,
+                                keyboard_type=ft.KeyboardType.VISIBLE_PASSWORD
+                            ),
+
+                        ],spacing=8)
 
                     ],horizontal_alignment='center')                  
                 )
