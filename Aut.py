@@ -233,16 +233,16 @@ def main(page: ft.Page):
     ])
 
     def resize_controls(e):
-        login.controls[0].width = page.window_width - 10,
-        login.controls[0].height = page.window_height - 10
+        login.controls[0].width = page.window_width - 10
+        login.controls[0].height = page.window_height - 60
 
 
-        register.controls[0].width = page.window_width - 10,
-        register.controls[0].height = page.window_height - 10
+        register.controls[0].width = page.window_width - 10
+        register.controls[0].height = page.window_height - 60
 
         page.update()
 
-    page.on_resize.subscribe(resize_controls)    
+    page.on_resize.__subclasshook__(resize_controls)    
     page.add(login)
 
 if __name__ == '__main__':
