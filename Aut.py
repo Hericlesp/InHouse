@@ -10,7 +10,7 @@ def main(page: ft.Page):
 
     login = ft.Column([ # aplica configuração a pagina peicipal roxa
         ft.Container(
-            bgcolor=ft.colors.PURPLE_400,
+            bgcolor=ft.colors.GREEN_200,
             width=page.window_width - 10,
             height= page.window.height - 60,
             border_radius=10,
@@ -23,15 +23,18 @@ def main(page: ft.Page):
                     border_radius=10,  
 
                     content=ft.Column([
-                        ft.Column([
-                            ft.Text(
-                                #bgcolor=ft.colors.BLACK, a cor aplica a caixa completa
-                                value='Sign-In',
-                                weight='Bold',
-                                size=20
-                            )
-                        ],spacing=20,horizontal_alignment='center')
-                    ])                  
+                        ft.Container(
+                            padding=ft.padding.only()
+                            ft.Column([
+                                ft.Text(
+                                    #bgcolor=ft.colors.BLACK, a cor aplica a caixa completa
+                                    value='Sign-In',
+                                    weight='bold',
+                                    size=20
+                                )
+                        ],spacing=20)
+                        )
+                    ],horizontal_alignment='center')                  
                 )
             ], horizontal_alignment='center',alignment='center')
         )
