@@ -8,6 +8,16 @@ def main(page: ft.Page):
     page.window.maximized = True
     page.window.resizable = False
 
+    def logar(e):
+        page.remove(register)
+        page.add(login)
+        page.update()
+
+    def registrar(e):
+        page.remove(login)
+        page.add(register)
+        page.update()
+
     login = ft.Column([ # aplica configuração a pagina peicipal roxa
         ft.Container(
             bgcolor=ft.colors.GREEN_200,
@@ -73,7 +83,11 @@ def main(page: ft.Page):
 
                             ft.Row([
                                 ft.TextButton('RECUPERAR CONTA'),
-                                ft.TextButton('CRIAR NOVA CONTA'),
+                                ft.TextButton(
+                                    text='CRIAR NOVA CONTA',
+                                    on_click=registrar,
+                                    
+                                ),
 
                             ],width=300,  alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
                         
@@ -203,7 +217,10 @@ def main(page: ft.Page):
 
                         ft.Row([
                             ft.TextButton('RECUPERAR CONTA'),
-                            ft.TextButton('JA TENHO UMA CONTA'),
+                            ft.TextButton(
+                                text='JA TENHO UMA CONTA',
+                                on_click=logar                                
+                            ),
 
                         ],width=300,  alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
 
@@ -215,7 +232,7 @@ def main(page: ft.Page):
          )
     ])
 
-    page.add(register)
+    page.add(login)
 
 if __name__ == '__main__':
     ft.app(target=main)
