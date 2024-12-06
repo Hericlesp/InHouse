@@ -18,6 +18,13 @@ def main(page: ft.Page):
         page.add(register)
         page.update()
 
+    # Msgbox = ft.AlertDialog(
+
+    #     content=ft.Container([
+    #         width=300,
+    #     ])
+    # )
+
     login = ft.Column([ # aplica configuração a pagina peicipal roxa
         ft.Container(
             bgcolor=ft.colors.GREEN_200,
