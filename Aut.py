@@ -28,7 +28,7 @@ def main(page: ft.Page):
 
     def close_msgbox(e):
         Msgbox.open=False
-        page.update
+        page.update()
 
     Msgbox = ft.AlertDialog(
 
@@ -41,7 +41,8 @@ def main(page: ft.Page):
                     ft.Icon(
                         ft.icons.CANCEL,
                         animate_size=30,
-                        color=ft.colors.RED
+                        #color=ft.colors.RED,=========
+                        color=ft.colors.PINK
                     ),                
 
                     ft.Text(
@@ -49,28 +50,29 @@ def main(page: ft.Page):
                         size=16,
                         weight='bold'
                     )
-            ],spacing=5)
+                ],spacing=5)
             ])
         ),
 
        actions=[
             ft.TextButton(
-                text='ok',
-                on_click= close_msgbox
+                text='OK',
+                on_click=close_msgbox
             )
         ],actions_alignment='end'
     )
 
     login = ft.Column([ # aplica configuração a pagina peicipal roxa
         ft.Container(
-            bgcolor=ft.colors.GREEN_200,
+            bgcolor=ft.colors.GREEN_400,
+            # bgcolor=ft.colors.PINK_600, ========================
             width=page.window_width - 10,
             height= page.window.height - 60,
             border_radius=10,
 
             content= ft.Column([ # aplica configuraçoes a caixa de informações
                 ft.Container(
-                    bgcolor=ft.colors.WHITE70,
+                    bgcolor=ft.colors.WHITE,
                     width=400,
                     height=320,
                     border_radius=10,  
@@ -118,8 +120,10 @@ def main(page: ft.Page):
 
                             ft.ElevatedButton(
                                 text='SIGN-IN',
-                                bgcolor=ft.colors.GREEN_600,
-                                on_hover=ft.colors.GREEN_600,
+                                # bgcolor=ft.colors.PINK_400, ====================
+                                # on_hover=ft.colors.BLUE_400, ===================
+                                bgcolor=ft.colors.GREEN_400,
+                                on_hover=ft.colors.GREEN_400,
                                 width=300,
                                 height=40,
                                 style=ft.ButtonStyle(overlay_color=ft.colors.GREEN_200),
@@ -155,14 +159,15 @@ def main(page: ft.Page):
 
     register = ft.Column([
         ft.Container(
-            bgcolor=ft.colors.GREEN_200,
+            bgcolor=ft.colors.GREEN_400,
+            # bgcolor=ft.colors.PINK_200, ================================
             width=page.window_width - 10,
             height= page.window.height - 60,
             border_radius=10,
 
             content= ft.Column([ # aplica configuraçoes a caixa de informações
                 ft.Container(
-                    bgcolor=ft.colors.WHITE70,
+                    bgcolor=ft.colors.WHITE,
                     width=400,
                     height=450,
                     border_radius=10,  
@@ -256,6 +261,8 @@ def main(page: ft.Page):
                             text='REGISTRAR',
                             bgcolor=ft.colors.GREEN_600,
                             on_hover=ft.colors.GREEN_600,
+                            # bgcolor=ft.colors.PINK_600, =========================
+                            # on_hover=ft.colors.PINK_600,=========================
                             width=300,
                             height=40
                         ),
