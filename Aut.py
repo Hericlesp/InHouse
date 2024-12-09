@@ -13,17 +13,53 @@ def main(page: ft.Page):
         page.add(login)
         page.update()
 
+
     def registrar(e):
         page.remove(login)
         page.add(register)
         page.update()
 
-    # Msgbox = ft.AlertDialog(
 
-    #     content=ft.Container([
-    #         width=300,
-    #     ])
-    # )
+    def open_msgbox(e):
+        page.dialog=Msgbox
+        Msgbox.open= True
+        page.update()
+
+
+    def close_msgbox(e):
+        Msgbox.open=False
+        page.update
+
+    Msgbox = ft.AlertDialog(
+
+        content=ft.Container(
+            width=360,
+            height=30,
+
+            content= ft.Column([
+                ft.Row([
+                    ft.Icon(
+                        ft.icons.CANCEL,
+                        animate_size=30,
+                        color=ft.colors.RED
+                    ),                
+
+                    ft.Text(
+                        value='Email ou senha incorrectos',
+                        size=16,
+                        weight='bold'
+                    )
+            ],spacing=5)
+            ])
+        ),
+
+       actions=[
+            ft.TextButton(
+                text='ok',
+                on_click= close_msgbox
+            )
+        ],actions_alignment='end'
+    )
 
     login = ft.Column([ # aplica configuração a pagina peicipal roxa
         ft.Container(
@@ -85,14 +121,16 @@ def main(page: ft.Page):
                                 bgcolor=ft.colors.GREEN_600,
                                 on_hover=ft.colors.GREEN_600,
                                 width=300,
-                                height=40
+                                height=40,
+                                style=ft.ButtonStyle(overlay_color=ft.colors.GREEN_200),
+                                on_click=open_msgbox,
                             ),
 
                             ft.Row([
                                 ft.TextButton('RECUPERAR CONTA'),
                                 ft.TextButton(
                                     text='CRIAR NOVA CONTA',
-                                    on_click=registrar,
+                                    on_click=registrar
                                     
                                 ),
 
