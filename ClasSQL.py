@@ -52,14 +52,22 @@ class SQLITE:
 
                 database, cursor = self.conectarBanco()
 
-                Dados =[]
-
-                for dado in Dados:
+                Dados = []
+                for dado in dados:
                     if type(dado) == str:
                         Dados.append(f"'{dado}'")
+                    else:
+                        Dados.append(str(dado))
 
-                else:
-                    Dados.append(str(dado))
+
+                # Dados =[]
+
+                # for dado in Dados:
+                #     if type(dado) == str:
+                #         Dados.append(f"'{dado}'")
+
+                # else:
+                #     Dados.append(str(dado))
 
                 ColunaSQL= ','.join(Colunas)
                 DadoSQL = ','.join(Dados)
@@ -83,10 +91,10 @@ class SQLITE:
         database, cursor = self.conectarBanco()
         
         if conditions == '':
-            cursor.execute(f'UPDATE TABLE {nomeTabela} SET {Coluna} = {valor}')
+            cursor.execute(f'UPDATE  {nomeTabela} SET {Coluna} = {valor}')
 
         else:  
-            cursor.execute(f'UPDATE TABLE {nomeTabela} SET {Coluna} = {valor} WHERE {conditions}')
+            cursor.execute(f'UPDATE  {nomeTabela} SET {Coluna} = {valor} WHERE {conditions}')
 
         database.commit()
         database.close()
@@ -97,10 +105,10 @@ class SQLITE:
         database, cursor = self.conectarBanco()
 
         if conditions == '':
-            cursor.execute(f'DELETE TABLE {nomeTabala}')
+            cursor.execute(f'DELETE FROM {nomeTabala}')
 
         else:
-            cursor.execute(f'DELETE TABLE {nomeTabala} WHERE {conditions}')
+            cursor.execute(f'DELETE FROM {nomeTabala} WHERE {conditions}')
 
         database.commit()
         database.close()
@@ -139,6 +147,20 @@ class SQLITE:
     
             # print(SQLITE('users').encrypt_password('senha123') ) printar na tela o codigo cripytografado.
 
+# TESTE DE EDIÇÃO DA DB
 
-sqlite = SQLITE('users')
-sqlite.criarTabela('usuarios',['nome','idade','senha'], ['TEXT','INTEGER','TEXT'])
+# sqlite = SQLITE('users')
+# sqlite.criarTabela('usuarios',['nome','idade','senha'], ['TEXT','INTEGER','TEXT'])
+# #sqlite.inserirDados('usuarios',['nome','idade','senha'], ['alex','15','abc123'])
+# #sqlite.editarDados('usuarios','idade','28')
+# #sqlite.apagarDados('usuarios',"nome = 'paulo'")
+# sqlite.apagarDados('usuarios',"nome = 'paulo'")
+# print(sqlite.verdados('usuarios'))
+
+
+# #teste de cryptografia
+
+# sqlite = SQLITE('users')
+# senha = sqlite.encrypt_password('abc123')
+# sqlite.inserirDados('usuarios',['nome','idade','senha'], ['alex','15',senha])
+# print(sqlite.verdados('usuarios'))
