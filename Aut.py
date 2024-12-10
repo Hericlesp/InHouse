@@ -1,6 +1,7 @@
 # PAGINA DE LOGIN 05 12 2024
 
 import flet as ft
+import ClasSQL as cl #brinadeira de integração
 
 def main(page: ft.Page):
     page.horizontal_alignment = 'center'
