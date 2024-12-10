@@ -124,8 +124,8 @@ def main(page: ft.Page):
                                 # on_hover=ft.colors.BLUE_400, ===================
                                 bgcolor=ft.colors.GREEN_400,
                                 on_hover=ft.colors.GREEN_400,
-                                width=300,
-                                height=40,
+                                width=260,
+                                height=30,
                                 style=ft.ButtonStyle(overlay_color=ft.colors.GREEN_200),
                                 on_click=open_msgbox,
                             ),
