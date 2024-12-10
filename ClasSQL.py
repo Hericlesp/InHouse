@@ -1,16 +1,25 @@
 import sqlite3 as sq
 import hashlib as sh
+import os #alteração propria
 
 class SQLITE: 
 
     def __init__(self, nomeBanco:str):
         self.nomeBanco = nomeBanco
 
-    def conectarBanco(self):
-        database = sq.connect(f'assets/databases/{self.nomeBanco}.db')
+    def conectarBanco(self):  #alterado
+        os.makedirs('c:/Users/Justino/Documents/Hexa/git&github/InHouse/assets/databases', exist_ok=True)
+        database = sq.connect(f'c:/Users/Justino/Documents/Hexa/git&github/InHouse/assets/databases{self.nomeBanco}.db')
         cursor = database.cursor()
 
         return database, cursor
+    
+
+    # def conectarBanco(self):
+    #     database = sq.connect(f'assets/databases/{self.nomeBanco}.db')
+    #     cursor = database.cursor()
+
+    #     return database, cursor
     
     def criarTabela(self, nomeTabela:str , Colunas: list, ColunasTipo: list):
 
@@ -42,6 +51,7 @@ class SQLITE:
             if len(Colunas) == len(dados):
 
                 database, cursor = self.conectarBanco()
+
                 Dados =[]
 
                 for dado in Dados:
@@ -54,7 +64,10 @@ class SQLITE:
                 ColunaSQL= ','.join(Colunas)
                 DadoSQL = ','.join(Dados)
 
-                cursor.execute(f'INSERT INTO {nomeTabela} ({ColunaSQL} VALUES ({DadoSQL}))')
+                cursor.execute(f'INSERT INTO {nomeTabela} ({ColunaSQL}) VALUES ({DadoSQL})')
+
+
+                # cursor.execute(f'INSERT INTO {nomeTabela} ({ColunaSQL} VALUES ({DadoSQL}))') alteração adapitativa 
 
                 database.commit()
                 database.close()
@@ -96,7 +109,10 @@ class SQLITE:
 
         database, cursor = self.conectarBanco()
 
-        ColunaSQL = ','.join(Colunas)
+        ColunaSQL = ','.join(Colunas) if isinstance(Colunas, list) else Colunas
+
+        # ColunaSQL = ','.join(Colunas)
+
 
         if conditions == '':
             cursor.execute(f'SELECT {ColunaSQL} FROM {nomeTabela}')
@@ -125,4 +141,4 @@ class SQLITE:
 
 
 sqlite = SQLITE('users')
-sqlite.criarTabela('usuarios',['nome','idade', 'senha'], ['TEXT', 'INTEGER', 'TEXT'])
+sqlite.criarTabela('usuarios',['nome','idade','senha'], ['TEXT','INTEGER','TEXT'])
