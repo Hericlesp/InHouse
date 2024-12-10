@@ -12,7 +12,7 @@ class SQLITE:
 
         return database, cursor
     
-    def criarTabela(self, nomeTabela:str , Colunas:list, ColunasTipo: list):
+    def criarTabela(self, nomeTabela:str , Colunas: list, ColunasTipo: list):
 
         if type(Colunas) == list and type(ColunasTipo) == list:
             if len(Colunas) == len(ColunasTipo):
@@ -61,6 +61,68 @@ class SQLITE:
 
             else:
                print('Impossivel salvar os dados') 
-               
+
         else:
              print('Impossivel salvar os dados') 
+
+    def editarDados(self, nomeTabela: str, Coluna: str, valor:str, conditions: str=''):
+
+        database, cursor = self.conectarBanco()
+        
+        if conditions == '':
+            cursor.execute(f'UPDATE TABLE {nomeTabela} SET {Coluna} = {valor}')
+
+        else:  
+            cursor.execute(f'UPDATE TABLE {nomeTabela} SET {Coluna} = {valor} WHERE {conditions}')
+
+        database.commit()
+        database.close()
+
+
+    def apagarDados(self, nomeTabala:str, conditions: str = ''):
+
+        database, cursor = self.conectarBanco()
+
+        if conditions == '':
+            cursor.execute(f'DELETE TABLE {nomeTabala}')
+
+        else:
+            cursor.execute(f'DELETE TABLE {nomeTabala} WHERE {conditions}')
+
+        database.commit()
+        database.close()
+
+    def verdados(self, nomeTabela: str, Colunas: list= '*', conditions: str= '' ):
+
+        database, cursor = self.conectarBanco()
+
+        ColunaSQL = ','.join(Colunas)
+
+        if conditions == '':
+            cursor.execute(f'SELECT {ColunaSQL} FROM {nomeTabela}')
+
+        else:
+            cursor.execute(f'SELECT {ColunaSQL} FROM {nomeTabela} WHERE {conditions}')
+
+        dados = cursor.fetchall()
+
+        database.commit()
+        database.close()
+
+        return dados
+    
+    def encrypt_password(self, senha: str):
+        
+        hash= sh.sha512()
+
+        hash.update(bytes(senha,'UTF-8'))
+
+        password_hashed= hash.hexdigest()
+
+        return password_hashed
+    
+            # print(SQLITE('users').encrypt_password('senha123') ) printar na tela o codigo cripytografado.
+
+
+sqlite = SQLITE('users')
+sqlite.criarTabela('usuarios',['nome','idade', 'senha'], ['TEXT', 'INTEGER', 'TEXT'])
