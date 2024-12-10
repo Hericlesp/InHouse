@@ -33,7 +33,7 @@ def main(page: ft.Page):
     Msgbox = ft.AlertDialog(
 
         content=ft.Container(
-            width=360,
+            width=260,
             height=30,
 
             content= ft.Column([
