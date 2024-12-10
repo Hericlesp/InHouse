@@ -38,4 +38,29 @@ class SQLITE:
 
     def inserirDados(self, nomeTabela: str, Colunas: list, dados: list):
 
-        if
+        if type(Colunas) == list and type(dados) == list:
+            if len(Colunas) == len(dados):
+
+                database, cursor = self.conectarBanco()
+                Dados =[]
+
+                for dado in Dados:
+                    if type(dado) == str:
+                        Dados.append(f"'{dado}'")
+
+                else:
+                    Dados.append(str(dado))
+
+                ColunaSQL= ','.join(Colunas)
+                DadoSQL = ','.join(Dados)
+
+                cursor.execute(f'INSERT INTO {nomeTabela} ({ColunaSQL} VALUES ({DadoSQL}))')
+
+                database.commit()
+                database.close()
+
+            else:
+               print('Impossivel salvar os dados') 
+               
+        else:
+             print('Impossivel salvar os dados') 
